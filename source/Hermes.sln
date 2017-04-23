@@ -1,0 +1,64 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_Common", "_Common", "{CF5792F4-CB1F-4F00-9B2F-9E91EA253213}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{0ACD795E-C9EB-4E12-B1DF-251E5C42C13C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hermes.WebSockets", "Backend\Hermes.WebSockets\Hermes.WebSockets.csproj", "{911816FB-404D-42EA-97E9-5A2415CF1B56}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hermes.DataObjects", "_Common\Hermes.DataObjects\Hermes.DataObjects.csproj", "{88612DF1-0436-4993-9F54-F6FBDBA1F270}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hermes.Entity", "_Common\Hermes.Entity\Hermes.Entity.csproj", "{4E4595DA-D634-4553-9962-8389C2BFCED7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hermes.Services", "_Common\Hermes.Services\Hermes.Services.csproj", "{5CE2355B-AE59-4889-BABC-058EECDB65CF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hermes.Client", "_Common\Hermes.Client\Hermes.Client.csproj", "{F29328F9-8673-4864-BC70-9640BD623ABC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hermes.WebAPI", "Backend\Hermes.WebAPI\Hermes.WebAPI.csproj", "{60392E81-75FC-409F-9A44-6D1CB726B9EE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{911816FB-404D-42EA-97E9-5A2415CF1B56}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{911816FB-404D-42EA-97E9-5A2415CF1B56}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{911816FB-404D-42EA-97E9-5A2415CF1B56}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{911816FB-404D-42EA-97E9-5A2415CF1B56}.Release|Any CPU.Build.0 = Release|Any CPU
+		{88612DF1-0436-4993-9F54-F6FBDBA1F270}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{88612DF1-0436-4993-9F54-F6FBDBA1F270}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{88612DF1-0436-4993-9F54-F6FBDBA1F270}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{88612DF1-0436-4993-9F54-F6FBDBA1F270}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4E4595DA-D634-4553-9962-8389C2BFCED7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4E4595DA-D634-4553-9962-8389C2BFCED7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4E4595DA-D634-4553-9962-8389C2BFCED7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4E4595DA-D634-4553-9962-8389C2BFCED7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5CE2355B-AE59-4889-BABC-058EECDB65CF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5CE2355B-AE59-4889-BABC-058EECDB65CF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5CE2355B-AE59-4889-BABC-058EECDB65CF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5CE2355B-AE59-4889-BABC-058EECDB65CF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F29328F9-8673-4864-BC70-9640BD623ABC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F29328F9-8673-4864-BC70-9640BD623ABC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F29328F9-8673-4864-BC70-9640BD623ABC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F29328F9-8673-4864-BC70-9640BD623ABC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{60392E81-75FC-409F-9A44-6D1CB726B9EE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{60392E81-75FC-409F-9A44-6D1CB726B9EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{60392E81-75FC-409F-9A44-6D1CB726B9EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{60392E81-75FC-409F-9A44-6D1CB726B9EE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{911816FB-404D-42EA-97E9-5A2415CF1B56} = {0ACD795E-C9EB-4E12-B1DF-251E5C42C13C}
+		{88612DF1-0436-4993-9F54-F6FBDBA1F270} = {CF5792F4-CB1F-4F00-9B2F-9E91EA253213}
+		{4E4595DA-D634-4553-9962-8389C2BFCED7} = {CF5792F4-CB1F-4F00-9B2F-9E91EA253213}
+		{5CE2355B-AE59-4889-BABC-058EECDB65CF} = {CF5792F4-CB1F-4F00-9B2F-9E91EA253213}
+		{F29328F9-8673-4864-BC70-9640BD623ABC} = {CF5792F4-CB1F-4F00-9B2F-9E91EA253213}
+		{60392E81-75FC-409F-9A44-6D1CB726B9EE} = {0ACD795E-C9EB-4E12-B1DF-251E5C42C13C}
+	EndGlobalSection
+EndGlobal
