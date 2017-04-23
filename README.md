@@ -44,7 +44,27 @@ register
 
 Users will then receive (at most) the last 10 "unacknowledged" notifications from the mentioned channels after the last received notification (if specified). The "LastNotificationId" field is meant to handle websocket reconnections without reloading a page.
 
-Once registered, users will now receive all newly created notifications from the corresponding channels.
+Once registered, users will now receive all newly created notifications from the corresponding channels. Notifications will be received as json objects:
+```json
+{
+	"Type": "NewNotification",
+	"Data": {
+		"Id": 1,
+		"Persistent": true,
+		"ChannelId": 1,
+		"ChannelName": "channel1",
+		"ApplicationId": 1,
+		"ApplicationName": "myapp",
+		"Time": "2017-04-23T20:44:28.533",
+		"Code": "new_notification",
+		"Message": "Test new message in channel 1",
+		"Tags": {
+			"test_key_1": "test_value_1",
+			"test_key_2": "test_value_2"
+		}
+	}
+}
+```
 
 ### Producer
 
