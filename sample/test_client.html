@@ -1,0 +1,138 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Hermes notifications</title>
+    <style>
+    </style>
+  </head>
+  <body>
+    <script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
+    <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
+    <script src="reconnecting-websocket.min.js"></script>
+    <script src="knockout-3.4.0.js"></script>
+    <script>
+
+      console.log("Opening WS");
+
+      function guid() {
+        function s4() {
+          return Math.floor((1 + Math.random()) * 0x10000)
+            .toString(16)
+            .substring(1);
+        }
+        return s4() + s4() + '-' + s4() + '-' + s4() + '-' +
+          s4() + '-' + s4() + s4() + s4();
+      }
+
+      function NotificationVM() {
+        var self = this;
+
+        self.id = ko.observable(0);
+        self.applicationId = ko.observable(0);
+        self.applicationName = ko.observable("");
+        self.channelId = ko.observable(0);
+        self.channelName = ko.observable("");
+        self.creationTime= ko.observable("");
+        self.message = ko.observable("");
+
+        self.fromJson = function(data) {
+          self.id(data.Id);
+          self.applicationId(data.ApplicationId);
+          self.applicationName(data.ApplicationName);
+          self.channelId(data.ChannelId);
+          self.channelName(data.ChannelName);
+          self.creationTime(data.Time);
+          self.message(data.Message);
+        }
+      }
+
+      function NotificationDashboardVM() {
+        var self = this;
+
+        self.status = ko.observable('Disconnected');
+        self.notifications = ko.observableArray([]);
+        self.lastNotificationId = 0;
+
+        self.notificationsStack = ko.computed(function() {
+           return self.notifications().sort(function (left, right) { 
+                return left.id() == right.id() ? 
+                     0 : 
+                     (left.id() > right.id() ? -1 : 1); 
+           });
+        });
+
+        self.addNotification = function(data) {
+          var notif = new NotificationVM();
+          notif.fromJson(data);
+
+          self.lastNotificationId = notif.id();
+
+          self.notifications.push(notif);
+        }
+
+        self.clear = function() {
+          self.notifications([]);
+        }
+      }
+
+      $(document).ready(function () {
+          var dashboard = new NotificationDashboardVM();
+
+          // bind view model to referring view
+          ko.applyBindings(dashboard);
+
+          // Use basic WebSocket
+          var socket = new ReconnectingWebSocket('ws://localhost:2012');
+
+          socket.onopen = function(event) {
+
+              dashboard.status('Connected');
+
+              socket.onmessage = function(event) {
+                console.log(event);
+
+                var obj = JSON.parse(event.data);
+                if (obj.Type === "NewNotification" && obj.Data.Persistent)
+                  dashboard.addNotification(obj.Data);
+                else
+                  console.log("Event!");
+              };
+              
+              socket.onclose = function(event) {
+                dashboard.status('Disconnected');
+                console.log('Client notified socket has closed', event);
+              };
+
+              socket.send('register {"ApplicationName": "myapp", "ClientId": "b239d7df-bfeb-4310-a840-43846a87efac", "Channels": ["channel1"], "FetchLast": 10, "LastNotificationId": ' + dashboard.lastNotificationId +'}');
+          };
+      });
+    </script>
+
+    <h2>Status: <span data-bind="text: status"></span></h2>
+
+    <table class="table table-hover table-striped">
+      <thead>
+          <tr>
+            <th>Id</th>
+            <th>ApplicationId</th>
+            <th>ApplicationName</th>
+            <th>ChannelId</th>
+            <th>ChannelName</th>
+            <th>Time</th>
+            <th>Message</th>
+          </tr> 
+      </thead>
+      <tbody data-bind="foreach: notificationsStack">
+        <tr>
+          <td><span data-bind="text: id"></span></td>
+          <td><span data-bind="text: applicationId"></span></td>
+          <td><span data-bind="text: applicationName"></span></td>
+          <td><span data-bind="text: channelId"></span></td>
+          <td><span data-bind="text: channelName"></span></td>
+          <td><span data-bind="text: creationTime"></span></td>
+          <td><span data-bind="text: message"></span></td>
+        </tr>
+      </tbody>
+    </table>
+  </body>
+</html>
